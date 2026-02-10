@@ -6,3 +6,8 @@
 
 # Tmux
 .tmux/plugins/
+
+# zsh
+.oh-my-zsh/
+.zsh/
+.zsh_history
