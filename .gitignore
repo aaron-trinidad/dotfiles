@@ -3,3 +3,6 @@
 .config/nvim/.cache/
 .config/nvim/.mason/
 .config/nvim/.luarc.json
+
+# Tmux
+.tmux/plugins/
