@@ -4,40 +4,69 @@ set -e
 
 DOTFILES="$HOME/dotfiles"
 
-echo "Installing dotfiles..."
+echo "================================="
+echo " Installing Aaron's dotfiles"
+echo "================================="
 
-# -------------------------
-# Install packages
-# -------------------------
+# Base packages
 
-echo "Installing packages..."
+if [ -f "$DOTFILES/packages.txt" ]; then
+  echo "Installing base packages..."
+  sudo apt update
+  xargs -a "$DOTFILES/packages.txt" sudo apt install -y
+fi
 
-sudo apt update
+# Run extra installers
 
-xargs -a "$DOTFILES/packages.txt" sudo apt install -y
+bash "$DOTFILES/scripts/install_wezterm.sh"
+bash "$DOTFILES/scripts/install_fonts.sh"
+bash "$DOTFILES/scripts/install_tools.sh"
 
-# -------------------------
-# Create symlinks
-# -------------------------
+# Symlinks
+
+link_file() {
+  SRC=$1
+  DEST=$2
+
+  if [ -L "$DEST" ]; then
+    echo "Symlink exists: $DEST"
+  elif [ -f "$DEST" ]; then
+    echo "Backing up: $DEST"
+    mv "$DEST" "$DEST.backup"
+    ln -s "$SRC" "$DEST"
+  else
+    ln -s "$SRC" "$DEST"
+    echo "Linked: $DEST"
+  fi
+}
 
 echo "Creating symlinks..."
 
-ln -sf "$DOTFILES/.zshrc" "$HOME/.zshrc"
-ln -sf "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
-ln -sf "$DOTFILES/.wezterm.lua" "$HOME/.wezterm.lua"
+link_file "$DOTFILES/.zshrc" "$HOME/.zshrc"
+link_file "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
+link_file "$DOTFILES/.wezterm.lua" "$HOME/.wezterm.lua"
 
-# -------------------------
-# Install TPM (tmux plugin manager)
-# -------------------------
+# Oh My Zsh
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "Installing Oh My Zsh..."
+  RUNZSH=no CHSH=no sh -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# TPM
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  echo "Installing TPM..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# -------------------------
-# Done
-# -------------------------
+# LazyVim
 
-echo "Dotfiles installed!"
-echo "Restart terminal and run tmux, then press Prefix + I to install plugins."
+if [ ! -d "$HOME/.config/nvim" ]; then
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  rm -rf ~/.config/nvim/.git
+fi
+
+echo "================================="
+echo " Done. Open Wezterm or Restart it."
+echo "================================="
