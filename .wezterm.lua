@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local config = {}
 
+config.default_prog = { "zsh" }
+
 config.font = wezterm.font("IosevkaTerm NF")
 config.font_size = 14.0
 

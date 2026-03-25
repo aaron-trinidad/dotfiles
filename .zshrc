@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # PATHs
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/opt/nvim/bin:$PATH"
 export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.atuin/bin:$HOME/.cargo/bin:$PATH"
 
 # Oh My Zsh

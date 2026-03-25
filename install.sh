@@ -8,6 +8,7 @@ echo "================================="
 echo " Installing Aaron's dotfiles"
 echo "================================="
 
+
 # Base packages
 
 if [ -f "$DOTFILES/packages.txt" ]; then
@@ -16,11 +17,23 @@ if [ -f "$DOTFILES/packages.txt" ]; then
   xargs -a "$DOTFILES/packages.txt" sudo apt install -y
 fi
 
-# Run extra installers
+
+# Oh My Zsh
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "Installing Oh My Zsh..."
+  RUNZSH=no CHSH=no sh -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+
+# Extra tools
 
 bash "$DOTFILES/scripts/install_wezterm.sh"
 bash "$DOTFILES/scripts/install_fonts.sh"
 bash "$DOTFILES/scripts/install_tools.sh"
+bash "$DOTFILES/scripts/install_neovim.sh"
+
 
 # Symlinks
 
@@ -30,7 +43,7 @@ link_file() {
 
   if [ -L "$DEST" ]; then
     echo "Symlink exists: $DEST"
-  elif [ -f "$DEST" ]; then
+  elif [ -e "$DEST" ]; then
     echo "Backing up: $DEST"
     mv "$DEST" "$DEST.backup"
     ln -s "$SRC" "$DEST"
@@ -42,31 +55,30 @@ link_file() {
 
 echo "Creating symlinks..."
 
+mkdir -p "$HOME/.config"
+
 link_file "$DOTFILES/.zshrc" "$HOME/.zshrc"
 link_file "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$DOTFILES/.wezterm.lua" "$HOME/.wezterm.lua"
+link_file "$DOTFILES/.p10k.zsh" "$HOME/.p10k.zsh"
+link_file "$DOTFILES/.config/nvim" "$HOME/.config/nvim"
 
-# Oh My Zsh
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  echo "Installing Oh My Zsh..."
-  RUNZSH=no CHSH=no sh -c \
-    "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-# TPM
+# TPM (tmux plugin manager)
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  echo "Installing TPM..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# LazyVim
+echo "Installing tmux plugins..."
 
-if [ ! -d "$HOME/.config/nvim" ]; then
-  git clone https://github.com/LazyVim/starter ~/.config/nvim
-  rm -rf ~/.config/nvim/.git
-fi
+tmux start-server || true
+tmux source-file ~/.tmux.conf || true
+~/.tmux/plugins/tpm/bin/install_plugins || true
+
+# Final message
 
 echo "================================="
-echo " Done. Open Wezterm or Restart it."
+echo " Done. Restart terminal (zsh)."
 echo "================================="

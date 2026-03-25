@@ -3,11 +3,9 @@ autoconf
 automake
 bison
 build-essential
-carapace-bin
 cheese
 clang
 cmake
-code
 curl
 fd-find
 foliate
@@ -29,7 +27,6 @@ libsox-fmt-mp3
 luarocks
 nodejs
 npm
-obsidian
 openjdk-17-jdk
 openjdk-17-source
 pipx
@@ -41,9 +38,9 @@ ripgrep
 sox
 sqlite3
 testdisk
+tmux
 unzip
 v4l-utils
 vim
-wezterm
 xournalpp
 zsh
