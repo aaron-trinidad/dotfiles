@@ -47,36 +47,36 @@ config.send_composed_key_when_right_alt_is_pressed = false
 
 -- THEME
 config.colors = {
-	foreground = "#f3f6f9",
-	background = "#06080f",
+	foreground = "#dcd7ba",
+	background = "#1f1f28",
 
-	cursor_bg = "#e0c15a",
-	cursor_fg = "#06080f",
-	cursor_border = "#e0c15a",
+	cursor_bg = "#c8c093",
+	cursor_fg = "#1f1f28",
+	cursor_border = "#c8c093",
 
-	selection_fg = "#f3f6f9",
-	selection_bg = "#263356",
+	selection_fg = "#dcd7ba",
+	selection_bg = "#2d4f67",
 
 	ansi = {
-		"#06080f",
-		"#cb7c94",
-		"#b7cc85",
-		"#ffe066",
-		"#7fb4ca",
-		"#ff8dd7",
-		"#7aa89f",
-		"#f3f6f9",
+		"#1f1f28", -- black
+		"#c34043", -- red
+		"#76946a", -- green
+		"#c0a36e", -- yellow
+		"#7e9cd8", -- blue
+		"#957fb8", -- magenta
+		"#6a9589", -- cyan
+		"#dcd7ba", -- white
 	},
 
 	brights = {
-		"#8a8fa3",
-		"#de8fa8",
-		"#d1e8a9",
-		"#fff7b1",
-		"#a3d4d5",
-		"#ffaeea",
-		"#7fb4ca",
-		"#f3f6f9",
+		"#727169", -- bright black
+		"#e82424", -- bright red
+		"#98bb6c", -- bright green
+		"#e6c384", -- bright yellow
+		"#7fb4ca", -- bright blue
+		"#938aa9", -- bright magenta
+		"#7aa89f", -- bright cyan
+		"#ffffff", -- bright white
 	},
 }
 
