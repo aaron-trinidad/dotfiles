@@ -3,10 +3,10 @@ local config = {}
 
 config.default_prog = { "zsh" }
 
-config.font = wezterm.font("IosevkaTerm NF")
+config.font = wezterm.font("IosevkaTerm Nerd Font")
 config.font_size = 14.0
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.91
 
 config.window_padding = {
 	top = 0,
