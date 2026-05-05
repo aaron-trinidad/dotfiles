@@ -8,7 +8,6 @@ echo "================================="
 echo " Installing Aaron's dotfiles"
 echo "================================="
 
-
 # Base packages
 
 if [ -f "$DOTFILES/packages.txt" ]; then
@@ -16,7 +15,6 @@ if [ -f "$DOTFILES/packages.txt" ]; then
   sudo apt update
   xargs -a "$DOTFILES/packages.txt" sudo apt install -y
 fi
-
 
 # Oh My Zsh
 
@@ -26,14 +24,12 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-
 # Extra tools
 
-bash "$DOTFILES/scripts/install_wezterm.sh"
-bash "$DOTFILES/scripts/install_fonts.sh"
-bash "$DOTFILES/scripts/install_tools.sh"
-bash "$DOTFILES/scripts/install_neovim.sh"
-
+bash "$DOTFILES/scripts/install/install_wezterm.sh"
+bash "$DOTFILES/scripts/install/install_fonts.sh"
+bash "$DOTFILES/scripts/install/install_tools.sh"
+bash "$DOTFILES/scripts/install/install_neovim.sh"
 
 # Symlinks
 
@@ -62,7 +58,6 @@ link_file "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$DOTFILES/.wezterm.lua" "$HOME/.wezterm.lua"
 link_file "$DOTFILES/.p10k.zsh" "$HOME/.p10k.zsh"
 link_file "$DOTFILES/.config/nvim" "$HOME/.config/nvim"
-
 
 # TPM (tmux plugin manager)
 
