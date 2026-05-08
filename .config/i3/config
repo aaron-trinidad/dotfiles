@@ -1,0 +1,132 @@
+# ==============================
+# i3 CONFIG - Aaron T. (enhanced)
+# ==============================
+
+set $mod Mod4
+bindsym $mod+Shift+e exec ~/.config/scripts/powermenu.sh
+
+font pango:IosevkaTerm Nerd Font 11
+
+# Startup apps
+exec --no-startup-id ~/.config/scripts/startup.sh
+
+# 🔋 Battery notifier loop (cada 60s)
+exec_always --no-startup-id bash -c "while true; do ~/.config/scripts/battery_notify.sh; sleep 60; done"
+
+# ------------------------------
+# COLORES (Kanagawa inspired)
+# ------------------------------
+set $bg        #1f1f28
+set $fg        #dcd7ba
+set $blue      #7e9cd8
+set $green     #98bb6c
+set $yellow    #e6c384
+set $red       #e46876
+set $gray      #727169
+
+client.focused          $blue $blue $bg $blue $blue
+client.unfocused        $bg   $bg   $gray $bg   $bg
+client.focused_inactive $bg   $bg   $gray $bg   $bg
+client.urgent           $red  $red  $bg   $red  $red
+
+# ------------------------------
+# TERMINAL
+# ------------------------------
+set $terminal wezterm
+bindsym $mod+Return exec $terminal
+
+# ------------------------------
+# LAUNCHER (rofi)
+# ------------------------------
+bindsym $mod+d exec rofi -show drun
+
+# ------------------------------
+# NAVEGACIÓN (VIM STYLE)
+# ------------------------------
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# ------------------------------
+# SPLITS
+# ------------------------------
+bindsym $mod+v split v
+bindsym $mod+b split h
+
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen toggle
+
+# ------------------------------
+# WORKSPACES
+# ------------------------------
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+# ------------------------------
+# CERRAR / RECARGAR
+# ------------------------------
+bindsym $mod+q kill
+bindsym $mod+Shift+r restart
+
+# ------------------------------
+# APPS RÁPIDAS
+# ------------------------------
+bindsym $mod+w exec firefox
+
+# ------------------------------
+# 🔊 VOLUMEN (teclas multimedia)
+# ------------------------------
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | awk '{print $5}' | xargs -I {} notify-send -r 9991 "🔊 Volumen {}" -h int:value:{}
+
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | awk '{print $5}' | xargs -I {} notify-send -r 9991 "🔉 Volumen {}" -h int:value:{}
+
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && notify-send -r 9991 "🔇 Mute"
+
+# ------------------------------
+# 💡 BRILLO
+# ------------------------------
+# Subir brillo
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/scripts/brightness_notify.sh +10%
+
+# Bajar brillo
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/scripts/brightness_notify.sh 10%-
+
+# ------------------------------
+# FLOATING
+# ------------------------------
+floating_modifier $mod
+
+# ------------------------------
+# AJUSTES VISUALES
+# ------------------------------
+new_window pixel 2
+new_float normal
+
+focus_follows_mouse no
+
+# ------------------------------
+# GAPS (opcional)
+# ------------------------------
+gaps inner 10
+gaps outer 5

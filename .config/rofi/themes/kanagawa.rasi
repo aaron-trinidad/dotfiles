@@ -1,0 +1,79 @@
+* {
+    font: "Iosevka Nerd Font 11";
+
+    bg: #1f1f28;
+    bg-alt: #2a2a37;
+    fg: #dcd7ba;
+
+    selected: #7e9cd8;
+    active: #98bb6c;
+    urgent: #e46876;
+
+    background-color: @bg;
+    text-color: @fg;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 500px;
+    border : 2px;
+    border-radius: 12px;
+    border-color: @active;
+    background-color: @bg;
+}
+
+mainbox {
+    padding: 12px;
+    background-color: @bg;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @bg-alt;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+prompt {
+    text-color: @selected;
+    margin: 0 8px 0 0;
+}
+
+entry {
+    text-color: @fg;
+    background-color: @bg-alt;
+}
+
+listview {
+    margin: 10px 0 0;
+    lines: 8;
+    scrollbar: false;
+    background-color: @bg;
+}
+
+element {
+    padding: 2px;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: #1f1f28;
+}
+
+element active.normal {
+    background-color: @active;
+    text-color: #1f1f28;
+}
+
+element urgent.normal {
+    background-color: @urgent;
+    text-color: #1f1f28;
+}
