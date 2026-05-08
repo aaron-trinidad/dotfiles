@@ -53,11 +53,20 @@ echo "Creating symlinks..."
 
 mkdir -p "$HOME/.config"
 
+# Home files
+
 link_file "$DOTFILES/.zshrc" "$HOME/.zshrc"
 link_file "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$DOTFILES/.wezterm.lua" "$HOME/.wezterm.lua"
 link_file "$DOTFILES/.p10k.zsh" "$HOME/.p10k.zsh"
+link_file "$DOTFILES/.config/i3/config" "$HOME/.config/i3/config"
 link_file "$DOTFILES/.config/nvim" "$HOME/.config/nvim"
+link_file "$DOTFILES/.config/polybar/config.ini" "$HOME/.config/polybar/config.ini"
+link_file "$DOTFILES/.config/rofi/config.rasi" "$HOME/.config/rofi/config.rasi"
+
+# Scripts
+
+link_file "$DOTFILES/scripts/system" "$HOME/.config/scripts"
 
 # TPM (tmux plugin manager)
 
