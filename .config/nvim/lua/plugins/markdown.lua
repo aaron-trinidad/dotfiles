@@ -64,6 +64,8 @@ return {
       },
       ui = { enable = false }, -- solo usar render-markdown para UI
 
+      legacy_commands = false,
+
       callbacks = {
         -- Runs anytime you enter the buffer for a note.
         enter_note = function(note)
