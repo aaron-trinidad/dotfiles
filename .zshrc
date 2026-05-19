@@ -53,3 +53,7 @@ eval "$(atuin init zsh)"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 start_if_needed
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
