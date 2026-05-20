@@ -10,12 +10,12 @@ return {
     config = function()
       -- 🎨 Paleta de headers (Avalon × Kanagawa)
       local header_colors = {
-        "#c55845", -- H1
-        "#4f7f9e", -- H2
-        "#729471", -- H3
-        "#764754", -- H4
-        "#3d5a6c", -- H5
-        "#3f4750", -- H6
+        "#5C2E35",
+        "#4C633F",
+        "#6A3745",
+        "#733848",
+        "#3F5A3F",
+        "#3E5F52",
       }
 
       -- 🖌️ Crear los grupos de highlight
