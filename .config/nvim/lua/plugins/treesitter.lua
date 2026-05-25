@@ -17,6 +17,9 @@ return {
       "sql",
       "bash",
       "json",
+      "markdown",
+      "markdown_inline",
+      "latex",
     }):wait(300000)
 
     vim.api.nvim_create_autocmd("FileType", {
