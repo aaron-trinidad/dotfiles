@@ -39,6 +39,19 @@ return {
             "MarkdownHeader6",
           },
         },
+
+        latex = {
+          enabled = true,
+          converter = "latex2text",
+
+          inline = {
+            enabled = true,
+          },
+
+          block = {
+            enabled = true,
+          },
+        },
       })
     end,
   },
