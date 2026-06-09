@@ -92,7 +92,7 @@ bindsym $mod+Shift+r restart
 # ------------------------------
 # APPS RÁPIDAS
 # ------------------------------
-bindsym $mod+w exec firefox
+bindsym $mod+u exec zen
 
 # ------------------------------
 # 🔊 VOLUMEN (teclas multimedia)
@@ -130,3 +130,11 @@ focus_follows_mouse no
 # ------------------------------
 gaps inner 10
 gaps outer 5
+
+# ------------------------------
+# RESIZE MODE
+# ------------------------------
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
