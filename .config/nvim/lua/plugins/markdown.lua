@@ -117,6 +117,20 @@ return {
               return clean_title
             end,
           },
+          book = {
+            notes_subdir = "aux-temp",
+            note_id_func = function(title)
+              if not title then
+                return tostring(os.time())
+              end
+              local clean_title = title
+                :gsub("|.*", "") -- elimina alias si hay "|"
+                :gsub(" ", "-") -- reemplaza espacios por guiones
+                :gsub("[^%w%-]", "") -- elimina caracteres no alfanuméricos
+                :lower()
+              return clean_title
+            end,
+          },
         },
       },
     },
