@@ -1,20 +1,6 @@
 #!/bin/bash
 
-INTERNAL="eDP-1"
-EXTERNAL="HDMI-1"
-
-# ------------------------------
-# MONITORES
-# ------------------------------
-if xrandr | grep "$EXTERNAL connected"; then
-  xrandr \
-    --output $INTERNAL --primary --mode 1280x720 \
-    --output $EXTERNAL --right-of $INTERNAL --scale 1x1
-else
-  xrandr \
-    --output $INTERNAL --primary --mode 1280x720 \
-    --output $EXTERNAL --off
-fi
+~/.config/scripts/monitors.sh || exit 1
 
 sleep 1
 
@@ -26,22 +12,15 @@ setxkbmap latam
 # ------------------------------
 # WALLPAPER
 # ------------------------------
-feh --bg-scale ~/Pictures/wallpaper.jpg
-
-# ------------------------------
-# POLYBAR
-# ------------------------------
-killall polybar
-sleep 1
-
-polybar main-internal &
-
-if xrandr | grep "$EXTERNAL connected"; then
-  polybar main-external &
-fi
+feh --bg-scale ~/Pictures/phm_wllpper.jpg
 
 # ------------------------------
 # PICOM
 # ------------------------------
-killall picom
-picom &
+killall picom 2>/dev/null
+picom >/dev/null 2>&1 &
+
+# ------------------------------
+# POLYBAR
+# ------------------------------
+~/.config/scripts/polybar.sh
